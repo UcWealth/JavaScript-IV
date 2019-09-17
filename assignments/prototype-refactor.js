@@ -1,45 +1,41 @@
 /* 
-
 Prototype Refactor
-
 1. Copy and paste your code or the solution from yesterday
-
 2. Your goal is to refactor all of this code to use ES6 Classes. The console.log() statements should still return what is expected of them.
-
 */
-
 class GameObject {
-    constructor(createdAt, name, dimensions) {
+    constructor({createdAt, name, dimensions}) {
         this.createdAt = createdAt;
         this.name = name;
         this.dimensions = dimensions;
-    };
+    }
     destroy(){
-      return `${this.name} was removed from the game.`;
+      return this.name + ' was removed from the game.';
       }
   }
 
   class CharacterStats extends GameObject {
-    constructor(healthPoints){
-      super(healthPoints);
+    constructor({createdAt, name, dimensions, healthPoints}){
+      super({createdAt, name, dimensions});
       this.healthPoints = healthPoints;
-    };
+    }
     takeDamage(){
       return `${this.name} took damage.`;
     }
   }  
  
   class Humanoid extends CharacterStats {
-   constructor(team, weapons,language){
-     super(team, weapons,language);
+   constructor({createdAt, name, dimensions, healthPoints,team, weapons,language}){
+     super({createdAt, name, dimensions, healthPoints});
      this.team = team;
      this.weapons = weapons;
      this.language = language;
-   };
+   }
    greet(){
     return `${this.name} offers a greeting in ${this.language}.`;
           }
   }
+
 
   // Test you work by un-commenting these 3 objects and the list of console logs below:
    
@@ -58,7 +54,7 @@ class GameObject {
       ],
       language: 'Common Tongue',
     });
-  
+
     const swordsman = new Humanoid({
       createdAt: new Date(),
       dimensions: {
@@ -104,8 +100,3 @@ class GameObject {
     console.log(mage.takeDamage()); // Bruce took damage.
     console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
   
-  // QUITE AN INTERESTING GAME.
-    // Stretch task: 
-    // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
-    // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
-    // * Create two new objects, one a villain and one a hero and fight it out with methods!

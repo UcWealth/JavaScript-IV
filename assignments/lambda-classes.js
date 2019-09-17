@@ -14,8 +14,8 @@ const Saruman = new Person('Saruman', 240, 'Middle Earth');
 const Samwise = new Person('Samwise', 25, 'The Shire');
 
 class Instructor extends Person {
-    constructor(specialty,favLanguage,catchPhrase) {
-        super(specialty,favLanguage,catchPhrase);
+    constructor({name,age,location,specialty,favLanguage,catchPhrase}) {
+        super(name,age,location);
         this.specialty = specialty;
         this.favLanguage = favLanguage;
         this.catchPhrase = catchPhrase;
@@ -27,16 +27,29 @@ class Instructor extends Person {
         console.log(`${student.name} receives a perfect score on ${subject}`)
     }
 }
-const Chioma = new Instructor('JQuery', 'Java', 'Just Do It');
-const Joshua = new Instructor('Sessions', 'Php', 'Gbe body e');
-Chioma.age = 36; Chioma.name = 'Chioma';
-Joshua.age = 42; Joshua.location = 'Lagos'; Joshua.name = 'Joshua'
+const Joshua = new Instructor({
+    name:'Joshua',
+    age: 42,
+    location: 'Lagos',
+    specialty: 'Sessions',
+    favLanguage: 'Php',
+    catchPhrase: 'Gbe body e'
+});
+
+const Chioma = new Instructor({
+    name:'Chioma',
+    age: 36,
+    location: 'Zamfara',
+    specialty: 'JQuery',
+    favLanguage: 'Java',
+    catchPhrase: 'Just Do It'
+});
 console.log(Chioma);
 console.log(Joshua);
 
 class Student extends Person {
-    constructor(previousBackground,className,favSubjects){
-        super(previousBackground,className,favSubjects);
+    constructor({name,age,location,previousBackground,className,favSubjects}){
+        super(name,age,location);
         this.previousBackground = previousBackground;
         this.className = className;
         this.favSubjects = favSubjects;
@@ -51,19 +64,40 @@ class Student extends Person {
         console.log(`${student.name} has begun sprint challenge on ${subject}`);
     };
 }
-const Babbi = new Student('baby girl','React', ['components', 'props']);
-Babbi.name = 'Babbi'; Babbi.age = 18; Babbi.location = 'New York';
-const Ife = new Student('student', 'Design', ['Figma', 'Wireframes']);
-Ife.name = 'Ife'; Ife.age = 20; Ife.location = 'Ghana';
-const Biso = new Student('banker', 'Backend', ['Flask', 'Laravel']);
-Biso.name = 'Biso'; Biso.age = '35';
+const Babbi = new Student({
+    name: 'Bambi',
+    age: 18,
+    location: 'New York',
+    previousBackground: 'baby girl',
+    className: 'React',
+    favSubjects: ['components', 'props']
+});
+
+const Ife = new Student({
+    name: 'Ife',
+    age: 23,
+    location: 'York Aba',
+    previousBackground: 'student',
+    className: 'UI/UX',
+    favSubjects: ['Figma', 'Wireframes']
+});
+
+const Biso = new Student({
+    name: 'Biso',
+    age: 30,
+    location: 'Ghana',
+    previousBackground: 'Banker',
+    className: 'Backend',
+    favSubjects: ['Flask', 'Laravel']
+});
+
 console.log(Babbi);
 console.log(Ife);
 console.log(Biso);
 
 class ProjectManager extends Instructor{
-    constructor(gradClassName, favInstructor){
-        super(gradClassName, favInstructor)
+    constructor({name,age,location,specialty,favLanguage,catchPhrase,gradClassName, favInstructor}){
+        super({name,age,location,specialty,favLanguage,catchPhrase});
         this.gradClassName = gradClassName;
         this.favInstructor =favInstructor;
     }
@@ -75,9 +109,29 @@ class ProjectManager extends Instructor{
     }
 }
 
-const Femi = new ProjectManager('CS350','Vivo');
-const Drake = new ProjectManager('Drake', 'Keri Hilson');
+const Femi = new ProjectManager({
+    name: 'Femi',
+    age: 27,
+    location: 'CSA',
+    specialty: 'Pivotal Tracker',
+    favLanguage: 'Python',
+    catchPhrase: 'Zagadat',
+    gradClassName: 'CS350',
+    favInstructor: 'Vivo'
+});
+const Drake = new ProjectManager({
+        name: 'Drake',
+        age: 28,
+        location: 'Jigawa',
+        specialty: 'Pivotal Tracker',
+        favLanguage: 'Google Analytics',
+        catchPhrase: 'Que Sera Sera',
+        gradClassName: 'SEO',
+        favInstructor: 'Keri Hilson',
+        subject: 'Maths'
+    });
+
 console.log(Drake);
-// console.log(Drake.debugsCode('Lucy'));
+console.log(Drake.debugsCode('Lucy'));
 console.log(Femi);
-// console.log(Femi.standUp('General'));
+console.log(Femi.standUp('General'));
